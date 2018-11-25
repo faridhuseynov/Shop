@@ -5,83 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Shop"
         mc:Ignorable="d"
-        Title="Shop" Height="500" Width="500">
-    <Window.Resources>
-        <DataTemplate x:Key="lbList">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.7*"></RowDefinition>
-                    <RowDefinition Height="0.02*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.05*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.01*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <DockPanel x:Name="SupplierAndPrice"
-                           LastChildFill="False"  
-                           Grid.Row="0" Grid.Column="0">
-                    <Label DockPanel.Dock="Left"
-                           Content="{Binding Suppl}"
-                           VerticalAlignment="Center"
-                           FontSize="30"></Label>
-                    <Label x:Name="lbPrice" 
-                           DockPanel.Dock="Right"
-                           VerticalContentAlignment="Center"
-                           FontSize="30"
-                           Content="{Binding UnitPrice}"/>
-                </DockPanel>
-                <DockPanel x:Name="PackageAndName"
-                           LastChildFill="False"
-                           Grid.Row="1" Grid.Column="0">
-                    <Label DockPanel.Dock="Left"
-                           FontSize="15"
-                           Content="{Binding Package}"></Label>
-                    <Label DockPanel.Dock="Right"
-                           FontSize="15"
-                           Content="{Binding ProductName}"/>
-                </DockPanel>
-                <DockPanel x:Name="DeleteAndEdit"
-                           LastChildFill="False"
-                           Grid.RowSpan="2" Grid.Column="2">
-                    <Button x:Name="btnDelete" DockPanel.Dock="Left"
-                            Background="White"
-                            BorderBrush="White"
-                            FontSize="25"
-                           Content="✖">
-                    </Button>
-                    <Button x:Name="btnEdit" DockPanel.Dock="Right"
-                             Background="White"
-                            BorderBrush="White"
-                            FontSize="25"
-                           Content="✏">
-                    </Button>
-                </DockPanel>
-            </Grid>
-            <DataTemplate.Triggers>
-                <DataTrigger Binding="{Binding IsDiscounted}" Value="True">
-                    <Setter TargetName="lbPrice"
-                            Property="Foreground" 
-                            Value="Green"></Setter>
-                </DataTrigger>
-            </DataTemplate.Triggers>
-        </DataTemplate>
-    </Window.Resources>
+        Title="Shop" Height="600" Width="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBox Margin="10,0" BorderThickness="5" BorderBrush="Black"
-                 Grid.Row="0"
-                 FontSize="30"
-                 VerticalContentAlignment="Bottom">
-        </TextBox>
-        <ListBox Grid.Row="1" Margin="10" BorderThickness="5" BorderBrush="Black"
-                 ItemsSource="{Binding prods}"
-                 ItemTemplate="{StaticResource lbList}"
-                 HorizontalContentAlignment="Stretch">
-        </ListBox>
+        <StackPanel Grid.Row="1"></StackPanel>
     </Grid>
 </Window>
