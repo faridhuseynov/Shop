@@ -6,12 +6,23 @@
         xmlns:local="clr-namespace:Shop"
         mc:Ignorable="d"
         Title="Shop" Height="600" Width="600">
+    <Window.Resources>
+
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="1"></StackPanel>
+        <StackPanel Grid.Row="1">
+            <ListBox>
+                <DockPanel>
+                    <Label></Label>
+                </DockPanel>
+            </ListBox>
+            
+        </StackPanel>
+        
     </Grid>
 </Window>
