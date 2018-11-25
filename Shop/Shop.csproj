@@ -67,6 +67,7 @@
     <Compile Include="Customer.cs">
       <DependentUpon>ShopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ObservableObject.cs" />
     <Compile Include="Order.cs">
       <DependentUpon>ShopModel.tt</DependentUpon>
     </Compile>
@@ -76,6 +77,7 @@
     <Compile Include="Product.cs">
       <DependentUpon>ShopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="ShopModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
