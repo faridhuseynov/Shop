@@ -7,27 +7,24 @@
         mc:Ignorable="d"
         Title="Shop" Height="600" Width="600">
     <Window.Resources>
-        <DataTemplate x:Key="ListBoxItem">
-                <DockPanel LastChildFill="False">
-                    <Label x:Name="lbSupplier" 
-                           Content="{Binding Supplier}" 
-                           FontSize="20"/>
-                    <Label x:Name="lbPackage"
-                           Content="{Binding Package}" 
-                           FontSize="10"/>
-                    <Label x:Name="lbPrice"
-                           Content="{Binding UnitPrice}" 
-                           FontSize="20"/>
-                    <Label x:Name="lbProdName"
-                           Content="{Binding ProductName}"
-                           FontSize="20"/>
-                </DockPanel>
+        <DataTemplate x:Key="lbList">
+            <DockPanel LastChildFill="False" HorizontalAlignment="Stretch">
+                <Label DockPanel.Dock="Left"
+                       Content="{Binding ProductName}"/>
+                <Label x:Name="lbPrice" 
+                       DockPanel.Dock="Right"
+                       Content="{Binding UnitPrice}"/>
+                <!--<Label DockPanel.Dock="Bottom" Content="{Binding Package}"></Label>
+                <Label DockPanel.Dock="Left" Content="{Binding Suppl}"></Label>-->
+            </DockPanel>
             <DataTemplate.Triggers>
                 <DataTrigger Binding="{Binding IsDiscounted}" Value="True">
-                    <Setter TargetName="lbPrice" Property="Foreground" Value="Green"></Setter>
+                    <Setter TargetName="lbPrice"
+                            Property="Foreground" 
+                            Value="Green"></Setter>
                 </DataTrigger>
             </DataTemplate.Triggers>
-            </DataTemplate>
+        </DataTemplate>
 
     </Window.Resources>
     <Grid>
@@ -37,9 +34,9 @@
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
         <ListBox Grid.Row="1"
-                 ItemsSource="{Binding Product}"
-                 ItemTemplate="{StaticResource ListBoxItem}">
+                 ItemsSource="{Binding prods}"
+                 ItemTemplate="{StaticResource lbList}"
+                 HorizontalContentAlignment="Stretch">
         </ListBox>
-
     </Grid>
 </Window>

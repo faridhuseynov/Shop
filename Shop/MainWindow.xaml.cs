@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,15 +22,38 @@ namespace Shop
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<Prod> prods { get; set; } = new ObservableCollection<Prod>();
+        public class Prod
+        {
+            public string ProductName { get; set; }
+            public int UnitPrice { get; set; }
+            public string Package { get; set; }
+            public string Suppl { get; set; }
+            public bool IsDiscounted { get; set; }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
-            using (ShopEntities db = new ShopEntities())
-            { 
-                var result=db.Products;
-
-            }
-
+            DataContext = this;
+            prods.Add(new Prod
+            {
+                ProductName = "Tea",
+                UnitPrice = 50,
+                Package = "HELL",
+                Suppl = "AV",
+                IsDiscounted = false
+            });
+            prods.Add(new Prod
+            {
+                ProductName = "Coffee",
+                UnitPrice = 40,
+                Package = "Nescafe light",
+                Suppl = "Nescafe",
+                IsDiscounted = false
+            });
         }
+
+
     }
 }
