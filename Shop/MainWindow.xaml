@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="Shop" Height="600" Width="600">
     <Window.Resources>
-
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -16,13 +15,18 @@
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1">
-            <ListBox>
-                <DockPanel>
-                    <Label></Label>
-                </DockPanel>
+            <ListBox ItemsSource="{Binding Product}" Grid.Row="1" HorizontalContentAlignment="Stretch">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Label Content="{Binding Supplier}" FontSize="20"/>
+                            <Label Content="{Binding Package}" FontSize="10"/>
+                            <Label Content="{Binding UnitPrice}" FontSize="20"/>
+                            <Label Content="{Binding ProductName}" FontSize="20"/>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
-            
         </StackPanel>
-        
     </Grid>
 </Window>
