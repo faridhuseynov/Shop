@@ -24,8 +24,7 @@ namespace Shop
         {
             InitializeComponent();
             using (ShopEntities db = new ShopEntities())
-            {
-                
+            { 
                 var result=db.Products;
 
             }

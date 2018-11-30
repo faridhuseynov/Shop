@@ -7,6 +7,28 @@
         mc:Ignorable="d"
         Title="Shop" Height="600" Width="600">
     <Window.Resources>
+        <DataTemplate x:Key="ListBoxItem">
+                <DockPanel LastChildFill="False">
+                    <Label x:Name="lbSupplier" 
+                           Content="{Binding Supplier}" 
+                           FontSize="20"/>
+                    <Label x:Name="lbPackage"
+                           Content="{Binding Package}" 
+                           FontSize="10"/>
+                    <Label x:Name="lbPrice"
+                           Content="{Binding UnitPrice}" 
+                           FontSize="20"/>
+                    <Label x:Name="lbProdName"
+                           Content="{Binding ProductName}"
+                           FontSize="20"/>
+                </DockPanel>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding IsDiscounted}" Value="True">
+                    <Setter TargetName="lbPrice" Property="Foreground" Value="Green"></Setter>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+            </DataTemplate>
+
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -14,19 +36,10 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="1">
-            <ListBox ItemsSource="{Binding Product}" Grid.Row="1" HorizontalContentAlignment="Stretch">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <DockPanel>
-                            <Label Content="{Binding Supplier}" FontSize="20"/>
-                            <Label Content="{Binding Package}" FontSize="10"/>
-                            <Label Content="{Binding UnitPrice}" FontSize="20"/>
-                            <Label Content="{Binding ProductName}" FontSize="20"/>
-                        </DockPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </StackPanel>
+        <ListBox Grid.Row="1"
+                 ItemsSource="{Binding Product}"
+                 ItemTemplate="{StaticResource ListBoxItem}">
+        </ListBox>
+
     </Grid>
 </Window>
