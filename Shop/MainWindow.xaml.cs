@@ -26,7 +26,7 @@ namespace Shop
         public class Prod
         {
             public string ProductName { get; set; }
-            public int UnitPrice { get; set; }
+            public Nullable<decimal> UnitPrice { get; set; }
             public string Package { get; set; }
             public string Suppl { get; set; }
             public bool IsDiscounted { get; set; }
@@ -38,11 +38,11 @@ namespace Shop
             DataContext = this;
             prods.Add(new Prod
             {
-                ProductName = "Tea",
+                ProductName = "exotic liq",
                 UnitPrice = 50,
-                Package = "HELL",
-                Suppl = "AV",
-                IsDiscounted = false
+                Package = "10 boxes",
+                Suppl = "Chai",
+                IsDiscounted = true
             });
             prods.Add(new Prod
             {
