@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Shop"
         mc:Ignorable="d"
-        Title="Shop" Height="500" Width="500">
+        Title="Shop" Height="600" Width="600">
     <Window.Resources>
         <DataTemplate x:Key="lbList">
           <Border BorderBrush="Black" BorderThickness="5">
@@ -25,22 +25,22 @@
                     <Label DockPanel.Dock="Left"
                            Content="{Binding ProductName}"
                            VerticalAlignment="Center"
-                           FontSize="30"></Label>
+                           FontSize="25"></Label>
                     <Label x:Name="lbPrice" 
                            DockPanel.Dock="Right"
                            VerticalContentAlignment="Center"
-                           FontSize="30"
+                           FontSize="25"
                            Content="{Binding UnitPrice}"/>
                 </DockPanel>
-                <DockPanel x:Name="PackageAndName"
+                <DockPanel x:Name="PackageAndSupplier"
                            LastChildFill="False"
                            Grid.Row="1" Grid.Column="0">
                     <Label DockPanel.Dock="Left"
-                           FontSize="15"
+                           FontSize="10"
                            Content="{Binding Package}"></Label>
                     <Label DockPanel.Dock="Right"
-                           FontSize="15"
-                           Content="{Binding ProductName}"/>
+                           FontSize="10"
+                           Content="{Binding Supplier.CompanyName}"/>
                 </DockPanel>
                 <DockPanel x:Name="DeleteAndEdit"
                            LastChildFill="False"
@@ -48,23 +48,23 @@
                     <Button x:Name="btnDelete" DockPanel.Dock="Left"
                             Background="White"
                             BorderBrush="White"
-                            FontSize="25"
+                            FontSize="20"
                            Content="✖">
                     </Button>
                     <Button x:Name="btnEdit" DockPanel.Dock="Right"
                              Background="White"
                             BorderBrush="White"
-                            FontSize="25"
+                            FontSize="20"
                            Content="✏">
                     </Button>
                 </DockPanel>
             </Grid>
           </Border>
             <DataTemplate.Triggers>
-                <DataTrigger Binding="{Binding IsDiscounted}" Value="True">
+                <DataTrigger Binding="{Binding IsDiscontinued}" Value="True">
                     <Setter TargetName="lbPrice"
                             Property="Foreground" 
-                            Value="Green"></Setter>
+                            Value="Red"></Setter>
                 </DataTrigger>
             </DataTemplate.Triggers>
         </DataTemplate>
@@ -75,15 +75,21 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBox Margin="10,0" BorderThickness="5" BorderBrush="Black"
+        <TextBox Name="txtSearchBox"
+                 Margin="10,0"
+                 Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"
+                 BorderThickness="5"
+                 BorderBrush="Black"
                  Grid.Row="0"
-                 FontSize="30"
+                 FontSize="25"
                  VerticalContentAlignment="Bottom">
         </TextBox>
+   
         <ListBox Grid.Row="1" Margin="10" BorderThickness="5" BorderBrush="Black"
-                 ItemsSource="{Binding prods}"
+                 ItemsSource="{Binding Data}"
                  ItemTemplate="{StaticResource lbList}"
-                 HorizontalContentAlignment="Stretch">
+                 HorizontalContentAlignment="Stretch"
+                 >
         </ListBox>
     </Grid>
 </Window>
