@@ -57,7 +57,6 @@ namespace Shop
             window.ShowDialog();
             if (window.Product!=null)
             {
-                //Data.Add(window.Product);
                 Entity.Products.Add(window.Product);
                 Entity.SaveChanges();
             }
