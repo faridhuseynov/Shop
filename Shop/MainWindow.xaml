@@ -84,12 +84,12 @@
                  BorderBrush="Black"
                  Grid.Row="0"
                  FontSize="25"
-                 VerticalContentAlignment="Bottom" TextChanged="txtSearchBox_TextChanged">
+                 VerticalContentAlignment="Bottom">
         </TextBox>
    
         <ListBox x:Name="productList"
                  Grid.Row="1" Margin="10" BorderThickness="5" BorderBrush="Black"
-                 ItemsSource="{Binding Data, UpdateSourceTrigger=PropertyChanged}"
+                 ItemsSource="{Binding Data}"
                  ItemTemplate="{StaticResource lbList}"
                  HorizontalContentAlignment="Stretch">
         </ListBox>

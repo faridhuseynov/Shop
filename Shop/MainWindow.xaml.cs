@@ -39,25 +39,14 @@ namespace Shop
         public string Search
         {
                 get => search; 
-                set => Set(ref search, value); 
+                set => Set(ref search, value);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void Set<T>(ref T field, T value, [CallerMemberName]string prop = "")
         {
             field = value;
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(prop));
-            productList.ItemsSource= (Resources[Data] as CollectionViewSource).View;
-        }
-
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
-
-        private void txtSearchBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string value = search;
             Data = new ObservableCollection<Product>(Entity.Products.Local.Where(x => x.ProductName.ToLower().Contains($"{value}".ToLower())).ToList());
+            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(prop));
             productList.ItemsSource = Data;
         }
 
@@ -68,7 +57,8 @@ namespace Shop
             window.ShowDialog();
             if (window.Product!=null)
             {
-                Data.Add(window.Product);
+                //Data.Add(window.Product);
+                Entity.Products.Add(window.Product);
                 Entity.SaveChanges();
             }
         }
@@ -79,8 +69,9 @@ namespace Shop
             if (choice == MessageBoxResult.Yes)
             {
                 var obj = ((Button)sender).DataContext as Product;
-                Data.Remove(obj);
+                Entity.Products.Remove(obj);
                 Entity.SaveChanges();
+                productList.ItemsSource = Data;
             }
         }
 
