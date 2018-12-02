@@ -95,6 +95,6 @@
                 Grid.Row="2"
                 Content="Add"
                 FontSize="35"
-                FontWeight="Bold"></Button>
+                FontWeight="Bold" Click="AddButton_Click"></Button>
     </Grid>
 </Window>

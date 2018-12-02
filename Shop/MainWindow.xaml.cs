@@ -34,6 +34,7 @@ namespace Shop
             DataContext = this;
             Entity.Products.Load();
             Data = Entity.Products.Local;
+            Entity.Suppliers.Load();
         }
 
         private string search;
@@ -60,6 +61,14 @@ namespace Shop
             string value = search;
             Data = new ObservableCollection<Product>(Entity.Products.Local.Where(x => x.ProductName.ToLower().Contains($"{value}".ToLower())).ToList());
             productList.ItemsSource = Data;
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddEditWindow window = new AddEditWindow();
+            window.SupplierCollection = new Collection<Supplier>(Entity.Suppliers.Local);
+            window.ShowDialog();
+
         }
     }
 }
