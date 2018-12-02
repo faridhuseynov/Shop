@@ -82,14 +82,19 @@
                  BorderBrush="Black"
                  Grid.Row="0"
                  FontSize="25"
-                 VerticalContentAlignment="Bottom">
+                 VerticalContentAlignment="Bottom" TextChanged="txtSearchBox_TextChanged">
         </TextBox>
    
-        <ListBox Grid.Row="1" Margin="10" BorderThickness="5" BorderBrush="Black"
-                 ItemsSource="{Binding Data}"
+        <ListBox x:Name="productList"
+                 Grid.Row="1" Margin="10" BorderThickness="5" BorderBrush="Black"
+                 ItemsSource="{Binding Data, UpdateSourceTrigger=PropertyChanged}"
                  ItemTemplate="{StaticResource lbList}"
-                 HorizontalContentAlignment="Stretch"
-                 >
+                 HorizontalContentAlignment="Stretch">
         </ListBox>
+        <Button x:Name="AddButton"
+                Grid.Row="2"
+                Content="Add"
+                FontSize="35"
+                FontWeight="Bold"></Button>
     </Grid>
 </Window>

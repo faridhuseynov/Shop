@@ -36,22 +36,30 @@ namespace Shop
             Data = Entity.Products.Local;
         }
 
-        private string search="Hello";
+        private string search;
         public string Search
         {
                 get => search; 
                 set => Set(ref search, value); 
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-
-        }
         public void Set<T>(ref T field, T value, [CallerMemberName]string prop = "")
         {
             field = value;
             PropertyChanged.Invoke(this, new PropertyChangedEventArgs(prop));
+            productList.ItemsSource= (Resources[Data] as CollectionViewSource).View;
+        }
+
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
+
+        private void txtSearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string value = search;
+            Data = new ObservableCollection<Product>(Entity.Products.Local.Where(x => x.ProductName.ToLower().Contains($"{value}".ToLower())).ToList());
+            productList.ItemsSource = Data;
         }
     }
 }
