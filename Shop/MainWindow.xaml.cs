@@ -25,8 +25,6 @@ namespace Shop
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         ShopEntities Entity = new ShopEntities();
-
-
         public ObservableCollection<Product> Data { get; set; } = new ObservableCollection<Product>();
         public MainWindow()
         {
@@ -68,6 +66,26 @@ namespace Shop
             AddEditWindow window = new AddEditWindow();
             window.SupplierCollection = new Collection<Supplier>(Entity.Suppliers.Local);
             window.ShowDialog();
+            if (window.Product!=null)
+            {
+                Data.Add(window.Product);
+                Entity.SaveChanges();
+            }
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+           MessageBoxResult choice= MessageBox.Show("Are you sure you want to permanently delete this item?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (choice == MessageBoxResult.Yes)
+            {
+                var obj = ((Button)sender).DataContext as Product;
+                Data.Remove(obj);
+                Entity.SaveChanges();
+            }
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

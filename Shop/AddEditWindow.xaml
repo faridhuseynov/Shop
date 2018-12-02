@@ -31,6 +31,8 @@
             <TextBox x:Name="tbName" DockPanel.Dock="Bottom"
                      VerticalContentAlignment="Bottom"
                      BorderThickness="5"
+                     Text="{Binding Path=ProdName}"
+                     FontSize="20"
                      Margin="10,0"></TextBox>
         </DockPanel>
         <DockPanel x:Name="PriceBox"
@@ -44,6 +46,8 @@
             <TextBox x:Name="tbPrice" DockPanel.Dock="Bottom"
                      VerticalContentAlignment="Bottom"
                      BorderThickness="5"
+                     Text="{Binding Path=UnitPrice}"
+                     FontSize="20"
                      Margin="10,0"></TextBox>
         </DockPanel>
         <DockPanel x:Name="PackageBox"
@@ -57,6 +61,8 @@
             <TextBox x:Name="tbPackage" DockPanel.Dock="Bottom"
                      VerticalContentAlignment="Bottom"
                      BorderThickness="5"
+                     FontSize="20"
+                     Text="{Binding Path=Package}"
                      Margin="10,0"></TextBox>
         </DockPanel>
         <DockPanel x:Name="SupplierBox"
@@ -64,14 +70,47 @@
                    Grid.ColumnSpan="2">
             <Label DockPanel.Dock="Top"
                    VerticalContentAlignment="Bottom"
-                   Content="Price"
+                   Content="Supplier"
                    FontSize="20"
                    Margin="10,0"></Label>
-            <ComboBox x:Name="tbSupplier" DockPanel.Dock="Bottom"
-                     VerticalContentAlignment="Bottom"
+            <ComboBox x:Name="cbSupplier" DockPanel.Dock="Bottom"
+                     VerticalContentAlignment="Center"
                      BorderThickness="5"
                      Margin="10,0"
-                      ItemsSource="{Binding }"></ComboBox>
+                     ItemsSource="{Binding Path=SupplierCollection}"
+                     DisplayMemberPath="CompanyName"
+                     SelectedIndex="0"
+                     FontSize="20">
+            </ComboBox>
         </DockPanel>
+        <DockPanel Grid.Row="4" Grid.ColumnSpan="2">
+            <CheckBox x:Name="cbDiscontinued"
+                      DockPanel.Dock="Left"
+                      Margin="10,20"
+                      BorderThickness="2">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="2" ScaleY="2" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+            <Label DockPanel.Dock="Right"
+                   Content="Discount"
+                   VerticalContentAlignment="Center"
+                   FontSize="30"
+                   Margin="0,0,0,15"></Label>
+        </DockPanel>
+        <Button x:Name="btnOk"
+                    Grid.Row="6" Grid.Column="0"
+                    BorderThickness="2"
+                    Content="OK"
+                    FontSize="30"
+                    FontWeight="DemiBold"
+                    Margin="10" Click="btnOk_Click"></Button>
+        <Button x:Name="btnCancel"
+                    Grid.Row="6" Grid.Column="1"
+                    BorderThickness="2"
+                    Content="Cancel"
+                    FontSize="30"
+                    FontWeight="DemiBold"
+                    Margin="10" Click="btnCancel_Click"></Button>
     </Grid>
 </Window>

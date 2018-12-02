@@ -49,13 +49,15 @@
                             Background="White"
                             BorderBrush="White"
                             FontSize="20"
-                           Content="✖">
+                            Content="✖"
+                            Click="btnDelete_Click">
                     </Button>
                     <Button x:Name="btnEdit" DockPanel.Dock="Right"
                              Background="White"
                             BorderBrush="White"
                             FontSize="20"
-                           Content="✏">
+                            Content="✏"
+                            Click="btnEdit_Click">
                     </Button>
                 </DockPanel>
             </Grid>
@@ -94,7 +96,10 @@
         <Button x:Name="AddButton"
                 Grid.Row="2"
                 Content="Add"
-                FontSize="35"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                FontSize="30"
+                Margin="10,0,10,10"
                 FontWeight="Bold" Click="AddButton_Click"></Button>
     </Grid>
 </Window>
